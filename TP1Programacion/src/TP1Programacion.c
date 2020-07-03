@@ -29,6 +29,7 @@ int main(void)
 	int resultadoFacA;
 	int resultadoFacB;
 	int retHuboError;
+	int flag1 = 0, flag2 = 0;
 
 	menuPrincipal(numeroA,numeroB);
 	if(utn_getNumero(&resultadoPrimerMenu,"","Error - El dato cargado no es valido\n",1,5,3)==0)
@@ -41,6 +42,7 @@ int main(void)
 				if((utn_getNumero(&numeroA,"Ingrese el 1er operador\n","Error - El dato cargado no es valido\n",-9999,9999,3)==0))
 				{
 					printf("\nvalor %d - cargado correctamente\n\n",numeroA);
+					flag1 = 1;
 				}
 				break;
 
@@ -48,6 +50,7 @@ int main(void)
 				if((utn_getNumero(&numeroB,"Ingrese el 2do operador\n","Error - El dato cargado no es valido\n",-9999,9999,3)==0))
 				{
 					printf("\nvalor %d - cargado correctamente\n\n",numeroB);
+					flag2 = 1;
 				}
 				break;
 
@@ -59,10 +62,19 @@ int main(void)
 				resultadoFacA=cargarFactorial(numeroA);
 				resultadoFacB=cargarFactorial(numeroB);
 				printf("\n\nOperaciones cargadas.\n\n");
+				flag1 = 0;
+				flag2 = 0;
 				break;
 
 			case 4:
-				menuMostrar (numeroA,numeroB,resultadoSuma,resultadoResta,resultadoDivision,retHuboError,resultadoMultiplicacion,resultadoFacA, resultadoFacB);
+				if(flag1 == 0 && flag2 == 0)
+				{
+					menuMostrar(numeroA,numeroB,resultadoSuma,resultadoResta,resultadoDivision,retHuboError,resultadoMultiplicacion,resultadoFacA, resultadoFacB);
+				}
+				else
+				{
+					printf("\n\nCalculo no realizado o no actualizado.\n\n");
+				}
 				break;
 
 			case 5:break;
